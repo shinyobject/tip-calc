@@ -23,7 +23,9 @@ const PeopleInput: React.FC<PeopleInputProps> = ({ icon, value, onChange }) => {
 
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-gray-700">Number of People</label>
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+        Number of People
+      </label>
       <div className="flex">
         <div className="relative flex-grow rounded-md shadow-sm">
           {icon && (
@@ -38,8 +40,13 @@ const PeopleInput: React.FC<PeopleInputProps> = ({ icon, value, onChange }) => {
             min="1"
             step="1"
             className={`
-              block w-full rounded-md border-gray-300 shadow-sm
-              focus:border-blue-500 focus:ring-blue-500 sm:text-sm
+              block w-full rounded-md 
+              border border-gray-300 dark:border-gray-600
+              bg-white dark:bg-gray-800
+              text-gray-900 dark:text-gray-100
+              placeholder-gray-400 dark:placeholder-gray-500
+              focus:border-blue-500 focus:ring-blue-500 
+              sm:text-sm
               ${icon ? 'pl-10' : 'pl-3'}
               py-2 transition-all duration-200 ease-in-out
             `}
@@ -49,14 +56,22 @@ const PeopleInput: React.FC<PeopleInputProps> = ({ icon, value, onChange }) => {
           <button
             type="button"
             onClick={increment}
-            className="h-1/2 px-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-t-md border border-gray-300 transition-colors"
+            className="h-1/2 px-2 
+              bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600
+              text-gray-700 dark:text-gray-100
+              rounded-t-md border border-gray-300 dark:border-gray-600
+              transition-colors"
           >
             +
           </button>
           <button
             type="button"
             onClick={decrement}
-            className="h-1/2 px-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-b-md border border-t-0 border-gray-300 transition-colors"
+            className="h-1/2 px-2 
+              bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600
+              text-gray-700 dark:text-gray-100
+              rounded-b-md border border-t-0 border-gray-300 dark:border-gray-600
+              transition-colors"
             disabled={value <= 1}
           >
             -

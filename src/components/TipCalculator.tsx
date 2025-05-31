@@ -43,7 +43,7 @@ const TipCalculator: React.FC = () => {
   }, [billAmount, tipPercentage, numberOfPeople, fixedAmounts]);
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out">
+    <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out">
       <div className="p-6">
         <div className="space-y-5">
           <AmountInput 
@@ -56,7 +56,9 @@ const TipCalculator: React.FC = () => {
 
           {fixedAmounts.length > 0 && (
             <div className="space-y-3">
-              <h3 className="text-sm font-medium text-gray-700">Individual Contributions</h3>
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Individual Contributions
+              </h3>
               {fixedAmounts.map((item) => (
                 <div key={item.id} className="flex items-center space-x-2 animate-fadeIn">
                   <AmountInput
@@ -68,7 +70,7 @@ const TipCalculator: React.FC = () => {
                   />
                   <button
                     onClick={() => removeFixedAmount(item.id)}
-                    className="p-2 text-red-500 hover:text-red-700 transition-colors"
+                    className="p-2 text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors"
                     aria-label="Remove fixed amount"
                   >
                     <Trash2 size={18} />
@@ -80,7 +82,7 @@ const TipCalculator: React.FC = () => {
 
           <button
             onClick={addFixedAmount}
-            className="flex items-center text-sm text-blue-600 font-medium hover:text-blue-800 transition-colors"
+            className="flex items-center text-sm text-blue-600 font-medium hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
           >
             <Plus size={16} className="mr-1" /> Add individual contribution
           </button>
