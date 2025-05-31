@@ -13,9 +13,11 @@ const TipCalculator: React.FC = () => {
   const [fixedAmounts, setFixedAmounts] = useState<Array<{ id: number, amount: number | null }>>([]);
   const [nextId, setNextId] = useState<number>(1);
   const [totalPerPerson, setTotalPerPerson] = useState<number | null>(null);
+  const [lastAddedId, setLastAddedId] = useState<number | null>(null);
 
   const addFixedAmount = () => {
     setFixedAmounts([...fixedAmounts, { id: nextId, amount: null }]);
+    setLastAddedId(nextId); // track which one was added
     setNextId(nextId + 1);
   };
 
@@ -54,37 +56,36 @@ const TipCalculator: React.FC = () => {
             placeholder="0.00"
           />
 
-          {fixedAmounts.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Individual Contributions
-              </h3>
-              {fixedAmounts.map((item) => (
-                <div key={item.id} className="flex items-center space-x-2 animate-fadeIn">
-                  <AmountInput
-                    icon={<DollarSign className="h-5 w-5 text-green-500" />}
-                    value={item.amount}
-                    onChange={(value) => updateFixedAmount(item.id, value)}
-                    placeholder="0.00"
-                    small
-                  />
-                  <button
-                    onClick={() => removeFixedAmount(item.id)}
-                    className="p-2 text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors"
-                    aria-label="Remove fixed amount"
-                  >
-                    <Trash2 size={18} />
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
+{fixedAmounts.map((item) => {
+  const isNew = item.id === lastAddedId;
+  const inputRef = isNew ? React.createRef<HTMLInputElement>() : undefined;
+
+  return (
+    <div key={item.id} className="flex items-center space-x-2 animate-fadeIn">
+      <AmountInput
+        icon={<DollarSign className="h-5 w-5 text-green-500" />}
+        value={item.amount}
+        onChange={(value) => updateFixedAmount(item.id, value)}
+        placeholder="0.00"
+        small
+        inputRef={inputRef}
+      />
+      <button
+        onClick={() => removeFixedAmount(item.id)}
+        className="p-2 text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors"
+        aria-label="Remove fixed amount"
+      >
+        <Trash2 size={18} />
+      </button>
+    </div>
+  );
+})}
 
           <button
             onClick={addFixedAmount}
             className="flex items-center text-sm text-blue-600 font-medium hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
           >
-            <Plus size={16} className="mr-1" /> Add individual contribution
+            <Plus size={16} className="mr-1" /> Paying separate
           </button>
 
           <TipSelector

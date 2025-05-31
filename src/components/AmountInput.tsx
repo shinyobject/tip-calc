@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect}  from 'react';
 
 interface AmountInputProps {
   icon?: React.ReactNode;
@@ -7,6 +7,7 @@ interface AmountInputProps {
   onChange: (value: number | null) => void;
   placeholder?: string;
   small?: boolean;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 const AmountInput: React.FC<AmountInputProps> = ({
@@ -16,6 +17,7 @@ const AmountInput: React.FC<AmountInputProps> = ({
   onChange,
   placeholder = '0.00',
   small = false,
+  inputRef,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -28,6 +30,12 @@ const AmountInput: React.FC<AmountInputProps> = ({
       }
     }
   };
+
+  useEffect(() => {
+    if (inputRef?.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   return (
     <div className={small ? '' : 'space-y-2'}>
@@ -43,6 +51,7 @@ const AmountInput: React.FC<AmountInputProps> = ({
           </div>
         )}
         <input
+        ref={inputRef}
           type="number"
           value={value === null ? '' : value}
           onChange={handleChange}
