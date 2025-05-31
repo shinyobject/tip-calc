@@ -31,6 +31,16 @@ const TipCalculator: React.FC = () => {
     );
   };
 
+  const handleReset = () => {
+    setBillAmount(null);
+    setTipPercentage(15);
+    setNumberOfPeople(2);
+    setFixedAmounts([]);
+    setNextId(1);
+    setTotalPerPerson(null);
+    setLastAddedId(null);
+  };
+
   useEffect(() => {
     if (billAmount !== null && numberOfPeople > 0) {
       const fixedTotal = fixedAmounts.reduce((acc, curr) => 
@@ -102,7 +112,7 @@ const TipCalculator: React.FC = () => {
         </div>
       </div>
 
-      <Result totalPerPerson={totalPerPerson} />
+      <Result totalPerPerson={totalPerPerson} reset={handleReset}/>
     </div>
   );
 };

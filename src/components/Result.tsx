@@ -3,9 +3,10 @@ import { formatCurrency } from '../utils/formatters';
 
 interface ResultProps {
   totalPerPerson: number | null;
+  reset: () => void;
 }
 
-const Result: React.FC<ResultProps> = ({ totalPerPerson }) => {
+const Result: React.FC<ResultProps> = ({ totalPerPerson, reset }) => {
   return (
     <div className="
       px-6 py-5 
@@ -20,9 +21,15 @@ const Result: React.FC<ResultProps> = ({ totalPerPerson }) => {
             {totalPerPerson !== null ? formatCurrency(totalPerPerson) : '$0.00'}
           </h2>
         </div>
-        
+
         <div className="text-blue-200 dark:text-blue-300 text-xs">
-          {totalPerPerson !== null && 'Final split amount'}
+          <div className="flex justify-center p-4">
+            <button
+              onClick={reset}
+            >
+              Reset Calculator
+            </button>
+          </div>
         </div>
       </div>
     </div>
