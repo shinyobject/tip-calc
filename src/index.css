@@ -36,18 +36,6 @@
   }
 }
 
-:root[data-theme='dark'] {
-  --bg: #111;
-  --fg: #eee;
-}
-
-:root[data-theme='light'] {
-  --bg: #fff;
-  --fg: #000;
-}
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  transition: background 0.2s, color 0.2s;
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
