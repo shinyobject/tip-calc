@@ -37,8 +37,8 @@
 }
 
 :root[data-theme='dark'] {
-  --bg: #000;
-  --fg: #fff;
+  --bg: #111;
+  --fg: #eee;
 }
 
 :root[data-theme='light'] {
@@ -47,6 +47,7 @@
 }
 
 body {
-  background-color: var(--bg);
+  background: var(--bg);
   color: var(--fg);
+  transition: background 0.2s, color 0.2s;
 }
