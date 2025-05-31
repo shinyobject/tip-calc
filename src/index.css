@@ -35,3 +35,18 @@
     transform: translateY(0);
   }
 }
+
+:root[data-theme='dark'] {
+  --bg: #000;
+  --fg: #fff;
+}
+
+:root[data-theme='light'] {
+  --bg: #fff;
+  --fg: #000;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+}
