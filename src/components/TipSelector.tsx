@@ -7,7 +7,7 @@ interface TipSelectorProps {
 }
 
 const TipSelector: React.FC<TipSelectorProps> = ({ icon, value, onChange }) => {
-  const tipOptions = [5, 10, 15, 18, 20, 25, 30];
+  const tipOptions = [0, 5, 10, 15, 18, 20, 25, 30];
 
   return (
     <div className="space-y-2">
