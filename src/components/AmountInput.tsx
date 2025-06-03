@@ -52,7 +52,7 @@ const AmountInput: React.FC<AmountInputProps> = ({
         )}
         <input
         ref={inputRef}
-          type="number"
+          type="numeric"
           value={value === null ? '' : value}
           onChange={handleChange}
           placeholder={placeholder}
