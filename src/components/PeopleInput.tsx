@@ -34,7 +34,8 @@ const PeopleInput: React.FC<PeopleInputProps> = ({ icon, value, onChange }) => {
             </div>
           )}
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
             value={value}
             onChange={handleChange}
             min="1"
